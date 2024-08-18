@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MM_Application</title>
+    <style>
+        *{
+            font-size: 40px;
+        }
+        body{
+            background-color: linen;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <form onsubmit="find()">
+        <input type="submit" value="get msg">
+
+    </form>
+    <h1 id="msg"></h1>
+    <h1 id="aut"></h1>
+</center>
+    <script>
+         function find(){
+            event.preventDefault();
+            let msg=document.getElementById("msg");
+            let aut=document.getElementById("aut");
+             let url="https://quotes-api-self.vercel.app/quote"
+            fetch(url)
+            .then(res=>res.json())
+            .then(data=>{
+                msg.innerHTML=data.quote;
+                aut.innerHTML=data.author;
+
+            })
+            .catch(err=>msg.innerHTML="issue"+err);
+        }
+
+    </script>
+</body>
+</html>
